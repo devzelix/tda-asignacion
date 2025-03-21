@@ -1,0 +1,18 @@
+# 📚 Preguntas Sobre Listas Doblemente Enlazadas
+
+## ❓ Preguntas y Respuestas
+
+### 🔹 1. ¿Cuál es la diferencia entre una lista simplemente enlazada y una lista doblemente enlazada?
+> **Respuesta:** La diferencia es que una lista simplemente enlazada tiene nodos con un puntero solo al siguiente nodo, mientras que una lista doblemente enlazada tiene nodos con punteros tanto al siguiente como al anterior, permitiendo recorrerla en ambos sentidos.
+
+### 🔹 2. ¿Cuáles son las ventajas y desventajas de usar una lista doblemente enlazada en comparación con una lista simplemente enlazada?
+> **Respuesta:** Una lista doblemente enlazada permite recorrer la estructura en ambos sentidos y facilita la eliminación e inserción de nodos, ya que cada nodo almacena punteros al anterior y al siguiente. Sin embargo, consume más memoria debido al puntero extra y su implementación es más compleja en comparación con una lista simplemente enlazada.
+
+### 🔹 3. ¿Cómo se realiza la inserción de un nodo en una lista doblemente enlazada?
+> **Respuesta:** Para insertar un nodo en una lista doblemente enlazada, se crea el nuevo nodo y se ajustan los punteros de los nodos involucrados. Si la lista está vacía, el nuevo nodo se convierte en la cabeza y sus punteros **siguiente** y **anterior** son **null**. Si se inserta al principio, el nuevo nodo apunta al nodo actual como **siguiente**, y el nodo actual apunta al nuevo nodo como **anterior**; por último se actualiza la cabeza. Si se inserta al final, el nodo anterior apunta al nuevo nodo como **siguiente**, y el nuevo nodo tiene **null** como **siguiente**. Si se inserta en el medio, el nodo anterior actualiza su puntero **siguiente** al nuevo nodo, el nuevo nodo apunta al siguiente nodo como su **siguiente**, y el siguiente nodo actualiza su puntero **anterior** al nuevo nodo. Este proceso mantiene la integridad de la lista al actualizar correctamente los punteros.
+
+### 🔹 4. ¿Qué cambios deben realizarse en los punteros al eliminar un nodo de una lista doblemente enlazada?
+> **Respuesta:** Al eliminar un nodo de una lista doblemente enlazada, los punteros de los nodos vecinos se actualizan. Si el nodo a eliminar es el primero, la cabeza de la lista se actualiza para que apunte al siguiente nodo, el puntero **anterior** del nuevo primer nodo se establece en **null**. Si el nodo a eliminar es el último, el nodo anterior al último actualiza su puntero **siguiente** a **null**. Si el nodo a eliminar está en el medio, el nodo anterior actualiza su puntero **siguiente** al siguiente nodo, y el nodo siguiente actualiza su puntero **anterior** al nodo anterior. Estos cambios mantienen la integridad de la lista, asegurando que los nodos estén correctamente enlazados.
+
+### 🔹 5. ¿Cuándo es más eficiente utilizar una lista doblemente enlazada en lugar de un array?
+> **Respuesta:** Una lista doblemente enlazada es más eficiente que un array cuando se realizan inserciones o eliminaciones frecuentes, especialmente en el medio o al principio, ya que no requiere mover elementos como en un array. También es mejor cuando se necesita recorrer la lista en ambos sentidos, ya que cada nodo tiene punteros hacia el siguiente y el anterior. Además, es útil cuando el tamaño de la estructura cambia dinámicamente, ya que no requiere redimensionar como un array. Sin embargo, los arrays ofrecen acceso rápido por índice, lo que no ocurre en las listas doblemente enlazadas.
