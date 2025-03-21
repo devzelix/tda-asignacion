@@ -1,4 +1,4 @@
-class NodoMusica:
+class NodoCancion:
     def __init__(self, titulo, autor):
         self.titulo = titulo
         self.autor = autor
@@ -81,11 +81,11 @@ class ListaDoblementeEnlazada:
             print("\nLa cola de reproduccion esta vacia.")
 
 def main():
-    musica_1 = NodoMusica("Hasta que te conoci", "Juan Gabriel")
-    musica_2 = NodoMusica("DtMf", "Bad Bunny")
-    musica_3 = NodoMusica("De sol a sol", "Salserin")
-    musica_4 = NodoMusica("Virgen", "Adolescentes")
-    musica_5 = NodoMusica("La mudanza", "Bad Bunny")
+    musica_1 = NodoCancion("Hasta que te conoci", "Juan Gabriel")
+    musica_2 = NodoCancion("DtMf", "Bad Bunny")
+    musica_3 = NodoCancion("De sol a sol", "Salserin")
+    musica_4 = NodoCancion("Virgen", "Adolescentes")
+    musica_5 = NodoCancion("La mudanza", "Bad Bunny")
     cola_reproduccion = ListaDoblementeEnlazada()
     cola_reproduccion.insertar_nodo_al_final(musica_1)
     cola_reproduccion.insertar_nodo_al_final(musica_2)
