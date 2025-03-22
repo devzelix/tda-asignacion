@@ -1,5 +1,5 @@
 class NodoCancion:
-    # Clase que representa un nodo de una canción
+    # Clase que representa un nodo de una canción dentro de una lista doblemente enlazada
     def __init__(self, titulo, autor):
         self.titulo = titulo  # Título de la canción
         self.autor = autor    # Autor de la canción
@@ -26,21 +26,22 @@ class ListaDoblementeEnlazada:
     def insertar_nodo_final(self, nodo_nuevo):
         # Método para insertar un nodo al final de la lista
         if not self.cabeza:
-            # Si la lista está vacía, el nuevo nodo es la cabeza
+            # Si la lista está vacía, el nuevo nodo se convierte en la cabeza
             self.cabeza = nodo_nuevo
         else:
             # Si la lista no está vacía, buscamos el último nodo
             nodo_actual = self.cabeza
             while nodo_actual.siguiente:
-                nodo_actual = nodo_actual.siguiente  # Avanzamos al siguiente nodo
+                nodo_actual = nodo_actual.siguiente  # Avanzamos hasta el último nodo
             nodo_actual.siguiente = nodo_nuevo  # El último nodo apunta al nuevo nodo
             nodo_nuevo.anterior = nodo_actual  # El nuevo nodo apunta al anterior
+        # Imprimir mensaje de éxito
         print(f"\nSe agrego correctamente '{nodo_nuevo.titulo}' a la cola de reproduccion.")
 
     def insertar_nodo(self, nodo_nuevo, indice):
         # Método para insertar un nodo en una posición específica de la lista
         if self.cabeza:
-            # Verificamos si el índice está dentro de los límites
+            # Verificamos si el índice está dentro de los límites de la lista
             if indice >= 0 and indice <= self.obtener_longitud() - 1:
                 if indice == 0:
                     # Insertar al principio de la lista
@@ -48,27 +49,32 @@ class ListaDoblementeEnlazada:
                     self.cabeza.anterior = nodo_nuevo
                     self.cabeza = nodo_nuevo  # El nuevo nodo se convierte en la cabeza
                 else:
-                    # Insertar en una posición intermedia
-                    nodo_actual = self.cabeza.siguiente
-                    for i in range(indice - 1):
+                    # Insertar en una posición intermedia de la lista
+                    nodo_actual = self.cabeza
+                    for i in range(1, indice):
                         nodo_actual = nodo_actual.siguiente  # Avanzamos hasta el nodo anterior
                     # Actualizamos las referencias para insertar el nuevo nodo
                     nodo_actual.siguiente.anterior = nodo_nuevo
                     nodo_nuevo.siguiente = nodo_actual.siguiente
                     nodo_actual.siguiente = nodo_nuevo
                     nodo_nuevo.anterior = nodo_actual
+                # Imprimir mensaje de éxito
                 print(f"\nSe agrego correctamente '{nodo_nuevo.titulo}' a la cola de reproduccion.")
             else:
-                print("\nEl indice esta fuera del rango.")  # El índice no es válido
+                # Si el índice está fuera de rango, mostramos un mensaje de error
+                print("\nEl indice esta fuera del rango.")
         else:
-            print("\nLa cola de reproduccion esta vacia.")  # La lista está vacía
+            # Si la lista está vacía, mostramos un mensaje de error
+            print("\nLa cola de reproduccion esta vacia.")
 
     def eliminar_nodo(self, titulo):
         # Método para eliminar un nodo por su título
         if self.obtener_longitud() > 0:
             if not self.cabeza.siguiente:
-                self.cabeza = None  # Si hay un solo nodo, lo eliminamos
+                # Si hay solo un nodo, eliminamos la cabeza
+                self.cabeza = None
             else:
+                # Buscamos el nodo a eliminar
                 nodo_actual = self.cabeza
                 while nodo_actual:
                     if nodo_actual.titulo == titulo:
@@ -80,7 +86,7 @@ class ListaDoblementeEnlazada:
                     self.cabeza.anterior = None  # La nueva cabeza no tiene anterior
                     print(f"\nSe elimino correctamente '{titulo}' de la cola de reproduccion.")
                 elif nodo_actual.siguiente == None:
-                    # Si el nodo a eliminar es el último
+                    # Si el nodo a eliminar es el último nodo
                     nodo_actual.anterior.siguiente = None
                     print(f"\nSe elimino correctamente '{titulo}' de la cola de reproduccion.")
                 elif nodo_actual:
@@ -89,9 +95,11 @@ class ListaDoblementeEnlazada:
                     nodo_actual.siguiente.anterior = nodo_actual.anterior
                     print(f"\nSe elimino correctamente '{titulo}' de la cola de reproduccion.")
                 else:
-                    print(f"\n'{titulo}' no se encontro en la cola de reproduccion.")  # Nodo no encontrado
+                    # Si no se encuentra el nodo
+                    print(f"\n'{titulo}' no se encontro en la cola de reproduccion.")
         else:
-            print("\nLa cola de reproduccion esta vacia.")  # Lista vacía
+            # Si la lista está vacía
+            print("\nLa cola de reproduccion esta vacia.")
 
     def listar_nodos(self):
         # Método para listar todos los nodos de la lista
@@ -107,7 +115,8 @@ class ListaDoblementeEnlazada:
                 nodo_actual = nodo_actual.siguiente  # Avanzamos al siguiente nodo
                 i += 1
         else:
-            print("\nLa cola de reproduccion esta vacia.")  # Lista vacía
+            # Si la lista está vacía
+            print("\nLa cola de reproduccion esta vacia.")
 
 def main():
     # Crear nodos de canciones
@@ -122,12 +131,12 @@ def main():
     cola_reproduccion.insertar_nodo_final(musica_1)
     cola_reproduccion.insertar_nodo_final(musica_2)
     cola_reproduccion.insertar_nodo_final(musica_3)
-    # Listar los nodos
+    # Listar los nodos de la lista de reproducción
     cola_reproduccion.listar_nodos()
-    # Insertar un nodo en el índice 0 (principio)
+    # Insertar un nodo al principio de la lista
     cola_reproduccion.insertar_nodo(musica_4, 0)
     cola_reproduccion.listar_nodos()
-    # Eliminar un nodo por título
+    # Eliminar un nodo por su título
     cola_reproduccion.eliminar_nodo("DtMf")
     cola_reproduccion.listar_nodos()
     # Insertar un nodo en el índice 2
@@ -136,7 +145,7 @@ def main():
     # Insertar un nodo al final
     cola_reproduccion.insertar_nodo_final(musica_5)
     cola_reproduccion.listar_nodos()
-    #Fin de la ejecucion del programa
+    # Fin de la ejecución del programa
     print()
 
 # Ejecutar la función principal
